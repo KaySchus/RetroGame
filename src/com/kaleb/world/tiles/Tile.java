@@ -9,12 +9,9 @@ public class Tile {
 	
 	public Tile(int imid, int i) {
 		Bitmap temp = BitmapLoader.getInstance().getBitmap(imid);
-		if (temp.getWidth() != 32 && temp.getHeight() != 32) {
-			System.out.println("Tile creation failed. NPOT Texture.");
-			return;
-		}
 		imageID = imid;
 		id = i;
+		temp.dispose();
 	}
 	
 	public int getID() { return id; }

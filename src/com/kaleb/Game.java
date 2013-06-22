@@ -48,17 +48,6 @@ public class Game implements Runnable {
 			gameTime.update();
 			update();
 			canvas.render();
-			
-			try {
-				long timeToSleep = ((gameTime.lastLoopTime() - gameTime.currentTime() + gameTime.OPTIMAL_TIME) / 1000000);
-				if (timeToSleep >= 0) {
-					Thread.sleep(timeToSleep);
-				} else {
-					Thread.sleep(1);
-				}
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		}
 		
 		System.out.println("Done");

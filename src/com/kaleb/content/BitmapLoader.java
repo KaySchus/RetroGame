@@ -45,7 +45,6 @@ public class BitmapLoader {
 			Bitmap b = new Bitmap(im);
 			bitmaps.put(count, b);
 			count++;
-			System.out.println(count - 1);
 			return count - 1;
 		} catch (IOException e) {
 			System.out.println("Error loading image. Error below.");
@@ -59,7 +58,6 @@ public class BitmapLoader {
 		Bitmap b = new Bitmap(width, height, col);
 		bitmaps.put(count,  b);
 		count++;
-		System.out.println(count - 1);
 		return count - 1;
 	}
 	

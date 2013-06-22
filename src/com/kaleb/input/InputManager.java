@@ -20,6 +20,14 @@ public class InputManager implements KeyListener {
 		mappings.put(KeyEvent.VK_S, ke.down);
 		mappings.put(KeyEvent.VK_DOWN, ke.down);
 		
+		mappings.put(KeyEvent.VK_A, ke.left);
+		mappings.put(KeyEvent.VK_LEFT, ke.left);
+		
+		mappings.put(KeyEvent.VK_D, ke.right);
+		mappings.put(KeyEvent.VK_RIGHT, ke.right);
+		
+		mappings.put(KeyEvent.VK_ENTER, ke.enter);
+		
 		mappings.put(KeyEvent.VK_ESCAPE, ke.exit);
 	}
 	

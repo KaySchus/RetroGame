@@ -36,6 +36,9 @@ public class Keys {
 	
 	public Key up = new Key();
 	public Key down = new Key();
+	public Key left = new Key();
+	public Key right = new Key();
+	public Key enter = new Key();
 	public Key exit = new Key();
 	
 	public void update() {

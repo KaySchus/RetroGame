@@ -39,6 +39,10 @@ public class Bitmap {
 	public int getWidth() { return width; }
 	public int getHeight() { return height; }
 	
+	public void dispose() {
+		image.flush();
+	}
+	
 	public void render(Graphics g, int x, int y) {
 		g.drawImage(image, x, y, null);
 	}
