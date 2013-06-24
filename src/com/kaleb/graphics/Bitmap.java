@@ -35,12 +35,17 @@ public class Bitmap {
 		}
 	}
 	
+	public BufferedImage getImage() { return image; }
 	public int getID() { return ID; }
 	public int getWidth() { return width; }
 	public int getHeight() { return height; }
 	
 	public void dispose() {
 		image.flush();
+	}
+	
+	public BufferedImage getSubImage(int x, int y, int w, int h) {
+		return image.getSubimage(x, y, w, h);
 	}
 	
 	public void render(Graphics g, int x, int y) {

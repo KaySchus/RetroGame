@@ -1,9 +1,11 @@
 package com.kaleb.graphics;
 
 import java.awt.Graphics;
+import java.util.List;
 import java.util.Map;
 
 import com.kaleb.world.World;
+import com.kaleb.world.entities.Entity;
 import com.kaleb.world.tiles.Tile;
 
 public class Camera {
@@ -51,6 +53,13 @@ public class Camera {
 					tiles.get(map[x + tilePosX][y + tilePosY]).getImage().render(g, (x * world.getTileSize()) - renderXOffs, 
 							(y * world.getTileSize()) - renderYOffs);
 				}
+			}
+		}
+		
+		List<Entity> entities = world.getEntities();
+		for (Entity e : entities) {
+			if (e.getX() > xPos - e.getBitmap().getWidth() &&  e.getX() < xPos + width && e.getY() > yPos - e.getBitmap().getWidth() && e.getY() < yPos + height) {
+				e.render(g, e.getX() - xPos, e.getY() - yPos);
 			}
 		}
 	}

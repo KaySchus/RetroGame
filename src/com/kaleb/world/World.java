@@ -1,11 +1,15 @@
 package com.kaleb.world;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import com.kaleb.GameTime;
 import com.kaleb.content.Bitmaps;
 import com.kaleb.graphics.Camera;
+import com.kaleb.graphics.fonts.BitmapFont;
 import com.kaleb.input.InputManager;
 import com.kaleb.world.entities.Entity;
 import com.kaleb.world.tiles.Tiles;
@@ -15,6 +19,8 @@ public class World {
 	private Camera camera;
 	private Random rand;
 	
+	private BitmapFont font;
+	
 	private int xSize = 100;
 	private int ySize = 100;
 	private int blockSize = 32;
@@ -22,11 +28,16 @@ public class World {
 	private Entity e = new Entity(Bitmaps.orange, 48, 48);
 	
 	private int[][] map = new int[xSize][ySize];
+	private List<Entity> entities = new ArrayList<Entity>();
 	
 	public World() {
 		camera = new Camera(this, 800, 600);
 		tiles = new Tiles();
 		rand = new Random();
+		
+		font = new BitmapFont(Bitmaps.testFont, 16, 16);
+		
+		entities.add(e);
 		
 		generate();
 	}
@@ -90,7 +101,7 @@ public class World {
 	
 	public void render(Graphics g) {
 		camera.render(g);
-		e.render(g);
+		font.renderString(g, "Hello my name is Kaleb how are you?", 0, 0, Color.BLUE);
 	}
 	
 	public int[][] getMap() { return map; }
@@ -98,4 +109,5 @@ public class World {
 	public Tiles getTiles() { return tiles; }
 	public int getXSize() { return xSize; }
 	public int getYSize() { return ySize; }
+	public List<Entity> getEntities() { return entities; }
 }
