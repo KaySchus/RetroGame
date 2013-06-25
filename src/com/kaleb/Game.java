@@ -3,9 +3,10 @@ package com.kaleb;
 import java.awt.Graphics;
 
 import com.kaleb.graphics.GameCanvas;
+import com.kaleb.gui.screens.Screen;
+import com.kaleb.gui.screens.TestScreen;
 import com.kaleb.input.InputManager;
 import com.kaleb.input.Keys;
-import com.kaleb.world.World;
 
 public class Game implements Runnable {
 	private boolean running = false;
@@ -16,7 +17,7 @@ public class Game implements Runnable {
 	private int gameWidth = 800;
 	private int gameHeight = 600;
 	
-	private World world;
+	private Screen currentScreen;
 	private InputManager manager;
 	
 	public void init() {
@@ -24,7 +25,7 @@ public class Game implements Runnable {
 		canvas = new GameCanvas(this, gameWidth, gameHeight, manager);
 		gameTime = new GameTime();
 		
-		world = new World();
+		currentScreen = new TestScreen();
 	}
 	
 	public void start() {
@@ -58,12 +59,13 @@ public class Game implements Runnable {
 		if (manager.getKeys().exit.keyPressed()) {
 			stop();
 		}
-		world.update(gameTime, manager);
+		
+		currentScreen = currentScreen.update(gameTime, manager);
 		
 	}
 	
 	public void render(Graphics g) {
-		world.render(g);
+		currentScreen.render(g);
 	}
 	
 	public GameCanvas getCanvas() { return canvas; }

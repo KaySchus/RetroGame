@@ -15,6 +15,9 @@ public class BitmapFont {
 	private int tileWidth;
 	private int tileHeight;
 	
+	private BufferedImage coloredImage;
+	private Color currentCol;
+	
 	public BitmapFont(int i, int tw, int th) {
 		imageID = i;
 		tilesWide = tw;
@@ -32,6 +35,18 @@ public class BitmapFont {
 		return string.length() * tileWidth;
 	}
 	
+	public void setColor(Color col) {
+		currentCol = col;
+		int color = currentCol.getRGB();
+		coloredImage = BitmapLoader.getInstance().getBitmap(imageID).getImage();
+		
+		for (int yy = 0; yy < coloredImage.getHeight(); yy++) {
+			for (int xx = 0; xx < coloredImage.getHeight(); xx++) {
+				coloredImage.setRGB(xx, yy, coloredImage.getRGB(xx, yy) & color);
+			}
+		}
+	}
+	
 	public void renderString(Graphics g, String string, int x, int y) {
 		Bitmap im = BitmapLoader.getInstance().getBitmap(imageID);
 		for (int xPos = 0; xPos < string.length(); xPos++) {
@@ -41,18 +56,12 @@ public class BitmapFont {
 		}
 	}
 	
-	public void renderString(Graphics g, String string, int x, int y, Color col) {
-		Bitmap im = BitmapLoader.getInstance().getBitmap(imageID);
-		int color = col.getRGB();
+	public void renderColoredString(Graphics g, String string, int x, int y, Color col) {
+		if (col != currentCol) setColor(col);
+		
 		for (int xPos = 0; xPos < string.length(); xPos++) {
 			int charID = string.charAt(xPos);
-			BufferedImage i = im.getSubImage((charID % tileWidth) * tileWidth, (charID / tileWidth) * tileWidth, tileWidth, tileHeight);
-			
-			for (int yy = 0; yy < i.getHeight(); yy++) {
-				for (int xx = 0; xx < i.getWidth(); xx++) {
-					i.setRGB(xx, yy, i.getRGB(xx, yy) & color);
-				}
-			}
+			BufferedImage i = coloredImage.getSubimage((charID % tileWidth) * tileWidth, (charID / tileWidth) * tileWidth, tileWidth, tileHeight);
 			
 			g.drawImage(i, x + (xPos * tileWidth), y, null);
 		}

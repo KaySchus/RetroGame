@@ -12,4 +12,5 @@ public class Bitmaps {
 	
 	public static final int testFont = bl.loadBitmap("testfont.png");
 	public static final int bitmapTest = bl.loadBitmap("test.png");
+	public static final int block = bl.loadBitmap("block.png");
 }

@@ -12,6 +12,7 @@ import com.kaleb.graphics.Camera;
 import com.kaleb.graphics.fonts.BitmapFont;
 import com.kaleb.input.InputManager;
 import com.kaleb.world.entities.Entity;
+import com.kaleb.world.entities.PlayerEntity;
 import com.kaleb.world.tiles.Tiles;
 
 public class World {
@@ -25,7 +26,9 @@ public class World {
 	private int ySize = 100;
 	private int blockSize = 32;
 	
-	private Entity e = new Entity(Bitmaps.orange, 48, 48);
+	private String fps = "";
+	
+	private Entity e = new PlayerEntity(this, Bitmaps.orange, 48, 48);
 	
 	private int[][] map = new int[xSize][ySize];
 	private List<Entity> entities = new ArrayList<Entity>();
@@ -89,19 +92,18 @@ public class World {
 	}
 	
 	public void update(GameTime gameTime, InputManager manager) {
+		for (Entity e : entities) {
+			e.update(gameTime, manager);
+		}
 		camera.update();
-		
-		if (manager.getKeys().up.isDown()) camera.move(0, -1);
-		if (manager.getKeys().down.isDown()) camera.move(0, 1);
-		if (manager.getKeys().left.isDown()) camera.move(-1, 0);
-		if (manager.getKeys().right.isDown()) camera.move(1, 0);
-	
 		if (manager.getKeys().enter.keyPressed()) smooth(1);
+		
+		fps = "FPS: " + gameTime.getFPS();
 	}
 	
 	public void render(Graphics g) {
 		camera.render(g);
-		font.renderString(g, "Hello my name is Kaleb how are you?", 0, 0, Color.BLUE);
+		font.renderColoredString(g, fps, 0, 0, Color.BLUE);
 	}
 	
 	public int[][] getMap() { return map; }

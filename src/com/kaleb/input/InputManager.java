@@ -28,6 +28,8 @@ public class InputManager implements KeyListener {
 		
 		mappings.put(KeyEvent.VK_ENTER, ke.enter);
 		
+		mappings.put(KeyEvent.VK_SHIFT, ke.shift);
+		
 		mappings.put(KeyEvent.VK_ESCAPE, ke.exit);
 	}
 	

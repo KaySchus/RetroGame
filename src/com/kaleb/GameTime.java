@@ -13,6 +13,7 @@ public class GameTime {
 	private long elapsedTimeS = 0;
 	
 	private int frames = 0;
+	private int lastFrames = 0;
 	
 	public void init() {
 		lastLoopTime = System.nanoTime();
@@ -34,12 +35,14 @@ public class GameTime {
 			System.out.println("FPS: " + frames);
 			totalFrameTime = 0;
 			elapsedTimeS++;
+			lastFrames = frames;
 			frames = 0;
 		}
 		
 		return deltaTime;
 	}
 	
+	public int getFPS() { return lastFrames; }
 	public double getDelta() { return deltaTime; }
 	public long getElapsedTime() { return elapsedTimeS; }
 	

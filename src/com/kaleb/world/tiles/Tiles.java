@@ -10,7 +10,8 @@ public class Tiles {
 	
     public Tile stone = new Tile(Bitmaps.stone, 1);
     public Tile grass = new Tile(Bitmaps.grass, 2);
-    public Tile bad = new Tile(Bitmaps.bitmapTest, 4);
+    public Tile red = new Tile(Bitmaps.blue, 3);
+    public Tile bad = new Tile(Bitmaps.block, 4);
 	
 	public Tiles() {
 		registerTile(stone);
