@@ -32,7 +32,6 @@ public class GameTime {
 		frames++;
 		
 		if (totalFrameTime >= 1000000000) {
-			System.out.println("FPS: " + frames);
 			totalFrameTime = 0;
 			elapsedTimeS++;
 			lastFrames = frames;

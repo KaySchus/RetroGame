@@ -3,14 +3,12 @@ package com.kaleb.graphics;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 
 import com.kaleb.Game;
 import com.kaleb.input.InputManager;
 
-public class GameCanvas extends Canvas implements KeyListener {
+public class GameCanvas extends Canvas {
 	private static final long serialVersionUID = 3706001658145650745L;
 	private Game parentRef = null;
 	
@@ -23,6 +21,8 @@ public class GameCanvas extends Canvas implements KeyListener {
 		parentRef = parent;
 		
 		addKeyListener(mang);
+		addMouseListener(mang);
+		addMouseMotionListener(mang);
 	}
 	
 	public void render() {
@@ -47,16 +47,4 @@ public class GameCanvas extends Canvas implements KeyListener {
 	
 	public Color getBackgroundColor() { return backgroundColor; }
 	public void setBackgroundColor(Color bg) { backgroundColor = bg; }
-
-	@Override
-	public void keyPressed(KeyEvent arg0) {
-	}
-
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-	}
 }

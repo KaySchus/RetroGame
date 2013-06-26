@@ -11,5 +11,6 @@ public class TestEntity extends Entity {
 	}
 	
 	public void update(GameTime gt, InputManager mag) {
+		super.update(gt, mag);
 	}
 }

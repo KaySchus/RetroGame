@@ -7,6 +7,7 @@ import com.kaleb.gui.screens.Screen;
 import com.kaleb.gui.screens.TestScreen;
 import com.kaleb.input.InputManager;
 import com.kaleb.input.Keys;
+import com.kaleb.input.Mouse;
 
 public class Game implements Runnable {
 	private boolean running = false;
@@ -18,10 +19,11 @@ public class Game implements Runnable {
 	private int gameHeight = 600;
 	
 	private Screen currentScreen;
+	private Screen lastScreen;
 	private InputManager manager;
 	
 	public void init() {
-		manager = new InputManager(new Keys());
+		manager = new InputManager(new Keys(), new Mouse());
 		canvas = new GameCanvas(this, gameWidth, gameHeight, manager);
 		gameTime = new GameTime();
 		
@@ -60,12 +62,15 @@ public class Game implements Runnable {
 			stop();
 		}
 		
+		lastScreen = currentScreen;
 		currentScreen = currentScreen.update(gameTime, manager);
 		
 	}
 	
 	public void render(Graphics g) {
-		currentScreen.render(g);
+		if (lastScreen == currentScreen) {
+			currentScreen.render(g);
+		}
 	}
 	
 	public GameCanvas getCanvas() { return canvas; }

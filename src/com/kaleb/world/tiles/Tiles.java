@@ -14,6 +14,10 @@ public class Tiles {
     public Tile bad = new Tile(Bitmaps.block, 4);
 	
 	public Tiles() {
+		stone.setSolid(true); stone.setName("stone");
+		grass.setSolid(false); grass.setName("grass");
+		bad.setSolid(true); bad.setName("border");
+		
 		registerTile(stone);
 		registerTile(grass);
 		registerTile(bad);
