@@ -51,6 +51,27 @@ public class Rectangle {
 		return false;
 	}
 	
+	private int getLineLength(int x1, int width1, int x2, int width2) {
+		if (x1 < x2) {
+			if (width1 > width2) return width2;
+			return width1 - (x2 - x1);
+		}
+		
+		else {
+			if (width1 > width2) return width2 - (x1 - x2);
+			return width1 - (x1 - x2);
+		}
+	}
+	
+	public int intSide(Rectangle rect) {
+		int lineY = getLineLength(getY(), getHeight(), rect.getY(), rect.getHeight());
+		int lineX = getLineLength(getX(), getWidth(), rect.getX(), rect.getWidth());
+		if (lineX > lineY) {
+			return 1;
+		}
+		return 2;
+	}
+	
 	public boolean intersects(Rectangle rect) {
 		if ((xPos > rect.getX() && xPos < rect.getX() + rect.getWidth()) || 
 				(xPos + width > rect.getX() && xPos + width < rect.getX() + rect.getWidth())) {

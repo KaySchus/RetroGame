@@ -70,5 +70,31 @@ public class Camera {
 
 		if (xPos > 0 && dx < 0) xPos += dx;
 		if (yPos > 0 && dy < 0) yPos += dy;
+		
+		if (xPos < 0) xPos = 0;
+		if (yPos < 0) yPos = 0;
+		
+		if (xPos > width) xPos = width;
+		if (yPos > height) yPos = height;
 	}
+	
+	public void setPos(int x, int y) {
+		int dx = xPos - x;
+		int dy = yPos - y;
+		
+		System.out.println(xPos + ", " + yPos);
+		System.out.println(x + ", " + y);
+		System.out.println(dx + ", " + dy);
+		
+		move(dx, dy);
+	}
+	
+	public void center(int x, int y) {
+		setPos(x - (width / 2), y - (height /2));
+	}
+	
+	public int getX() { return xPos; }
+	public int getY() { return yPos; }
+	public int getWidth() { return width; }
+	public int getHeight() { return height; }
 }

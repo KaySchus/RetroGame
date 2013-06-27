@@ -6,8 +6,8 @@ import com.kaleb.world.World;
 
 public class TestEntity extends Entity {
 
-	public TestEntity(World w, int i, int x, int y) {
-		super(w, i, x, y);
+	public TestEntity(World w, int i, int x, int y, int ww, int hh) {
+		super(w, i, x, y, ww, hh);
 	}
 	
 	public void update(GameTime gt, InputManager mag) {

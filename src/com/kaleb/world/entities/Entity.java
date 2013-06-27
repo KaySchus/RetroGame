@@ -16,20 +16,32 @@ public class Entity {
 	private double xPos;
 	private double yPos;
 	
+	private int width;
+	private int height;
+	
+	private int tileX;
+	private int tileY;
+	
 	private Rectangle bounds;
 	
 	private boolean shouldRender = true;
 	
-	public Entity(World w, int i, int x, int y) {
+	public Entity(World w, int i, int x, int y, int ww, int hh) {
 		world = w;
 		imageID = i;
+		
 		xPos = x;
 		yPos = y;
+		
+		width = ww;
+		height = hh;
 		
 		bounds = new Rectangle((int) xPos, (int) yPos, 16, 16);
 	}
 
 	public void update(GameTime gt, InputManager mag) {
+		tileX = (int) (xPos + (width / 2)) / 32;
+		tileY = (int) (yPos + (height / 2)) / 32;
 		bounds.update((int) xPos, (int) yPos);
 	}
 	
@@ -40,12 +52,29 @@ public class Entity {
 	}
 	
 	public World getWorld() { return world; }
-	public void setX(int val) { xPos = val; }
-	public void setY(int val) { yPos = val; }
-	public void incX(double val) { xPos += val; }
-	public void incY(double val) { yPos += val; }
+	
+	public void setX(double val) { 
+		xPos = val; 
+		bounds.update((int) xPos, (int) yPos);
+	}
+	
+	public void setY(double val) { 
+		yPos = val; 
+		bounds.update((int) xPos, (int) yPos);
+	}
+	
+	public void incX(double val) { setX(xPos + val); }
+	public void incY(double val) { setY(yPos + val); }
+	
 	public int getX() { return (int) xPos; }
 	public int getY() { return (int) yPos; }
+	
+	public int getWidth() { return width; }
+	public int getHeight() { return height; }
+	
+	public int getTileX() { return tileX; }
+	public int getTileY() { return tileY; }
+	
 	public Rectangle getBounds() { return bounds; }
 	public Bitmap getBitmap() { return BitmapLoader.getInstance().getBitmap(imageID); }
 }
