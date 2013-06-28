@@ -79,14 +79,8 @@ public class Camera {
 	}
 	
 	public void setPos(int x, int y) {
-		int dx = xPos - x;
-		int dy = yPos - y;
-		
-		System.out.println(xPos + ", " + yPos);
-		System.out.println(x + ", " + y);
-		System.out.println(dx + ", " + dy);
-		
-		move(dx, dy);
+		if (x >= 0 && x <= (world.getXSize() * world.getTileSize()) - width / 2) xPos = x;
+		if (y >= 0 && y <= (world.getYSize() * world.getTileSize()) - height / 2) yPos = y;
 	}
 	
 	public void center(int x, int y) {

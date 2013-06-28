@@ -36,7 +36,7 @@ public class Entity {
 		width = ww;
 		height = hh;
 		
-		bounds = new Rectangle((int) xPos, (int) yPos, 16, 16);
+		bounds = new Rectangle((int) xPos, (int) yPos, ww, hh);
 	}
 
 	public void update(GameTime gt, InputManager mag) {
