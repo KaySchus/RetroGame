@@ -38,6 +38,17 @@ public class BitmapLoader {
 		return null;
 	}
 	
+	public BufferedImage loadImage(String filename) {
+		try {
+			BufferedImage im = ImageIO.read(new File(filename));
+			return im;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	public int loadBitmap(String filename) {
 		try {
 			BufferedImage im = ImageIO.read(new File(filename));

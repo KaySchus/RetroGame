@@ -50,8 +50,17 @@ public class Camera {
 		for (int y = 0; y < tilesY; y++) {
 			for (int x = 0; x < tilesX; x++) {
 				if (x + tilePosX >= 0 && x + tilePosX < world.getXSize() && y + tilePosY >= 0 && y + tilePosY < world.getYSize()) {
-					tiles.get(map[x + tilePosX][y + tilePosY]).getImage().render(g, (x * world.getTileSize()) - renderXOffs, 
-							(y * world.getTileSize()) - renderYOffs);
+					Tile t = tiles.get(map[x + tilePosX][y + tilePosY]);
+					Bitmap im = null;
+					if (t.hasMeta()) {
+						im = t.getImageFromMeta(world.getLevel().getMeta()[x + tilePosX][y + tilePosY]);
+					}
+					else im = t.getImage();
+					if (im != null) {
+						im.render(g, (x * world.getTileSize()) - renderXOffs, (y * world.getTileSize()) - renderYOffs);
+					}
+					
+					
 				}
 			}
 		}

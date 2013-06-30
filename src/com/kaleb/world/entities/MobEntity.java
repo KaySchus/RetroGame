@@ -13,12 +13,17 @@ public class MobEntity extends Entity {
 	public static final int WEST = 4;
 	
 	private int facing;
+	
 	private double xVel;
 	private double yVel;
 	
 	public MobEntity(World w, int i, int x, int y, int ww, int hh) {
 		super(w, i, x, y, ww, hh);
-		
+		facing = NORTH;
+	}
+	
+	public MobEntity(World w, int i, int x, int y, int xx, int yy, int ww, int hh) {
+		super(w, i, x, y, xx, yy, ww, hh);
 		facing = NORTH;
 	}
 	
@@ -27,6 +32,11 @@ public class MobEntity extends Entity {
 		
 		if (getWorld() != null) {
 			int[][] tiles = getWorld().tilesAround(getTileX(), getTileY());
+			
+			if (xVel > 0) facing = EAST;
+			if (xVel < 0) facing = WEST;
+			if (yVel > 0) facing = SOUTH;
+			if (yVel < 0) facing = NORTH;
 			
 			double incX = xVel * gt.getDelta();
 			double incY = yVel * gt.getDelta();
@@ -40,8 +50,9 @@ public class MobEntity extends Entity {
 					if (t != null) {
 						Rectangle tBounds = t.getBounds();
 						tBounds.update((getTileX() + x) * 32, (getTileY() + y) * 32);
+						byte m = getWorld().getLevel().getMeta()[getTileX() + x][getTileY() + y];
 							
-						if (getBounds().intersects(tBounds) && t.isSolid()) {
+						if (getBounds().intersects(tBounds) && t.isSolidWithMeta(m)) {
 							if (xVel > 0) {
 								setX(tBounds.getX() - getBounds().getWidth());
 								while (getBounds().intersects(tBounds)) {
@@ -50,7 +61,7 @@ public class MobEntity extends Entity {
 							}
 								
 							else if (xVel < 0) {
-								setX(tBounds.getX() + tBounds.getWidth());
+								setX(tBounds.getX() + tBounds.getWidth() - getXOffs());
 								while (getBounds().intersects(tBounds)) {
 									incX(1);
 								}
@@ -75,6 +86,8 @@ public class MobEntity extends Entity {
 			}
 		}
 	}
+	
+	public int getFacing() { return facing; }
 	
 	public double getXVel() { return xVel; }
 	public double getYVel() { return yVel; }

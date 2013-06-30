@@ -41,6 +41,7 @@ public class Keys {
 	public Key enter = new Key();
 	public Key exit = new Key();
 	public Key shift = new Key();
+	public Key use = new Key();
 	
 	public void update() {
 		for (Key key : keys) {

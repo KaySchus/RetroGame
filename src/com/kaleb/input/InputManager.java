@@ -40,6 +40,8 @@ public class InputManager implements KeyListener, MouseListener, MouseMotionList
 		
 		mappings.put(KeyEvent.VK_ESCAPE, keys.exit);
 		
+		mappings.put(KeyEvent.VK_E, keys.use);
+		
 		mouseMappings.put(MouseEvent.BUTTON1, mouse.left);
 		mouseMappings.put(MouseEvent.BUTTON3, mouse.right);
 	}

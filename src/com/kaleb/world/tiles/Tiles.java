@@ -12,15 +12,18 @@ public class Tiles {
     public Tile grass = new Tile(Bitmaps.grass, 2);
     public Tile red = new Tile(Bitmaps.blue, 3);
     public Tile bad = new Tile(Bitmaps.block, 4);
+    public Tile door = new TileDoor(Bitmaps.door, Bitmaps.grass, 5);
 	
 	public Tiles() {
 		stone.setSolid(true); stone.setName("stone");
 		grass.setSolid(false); grass.setName("grass");
 		bad.setSolid(true); bad.setName("border");
+		door.setSolid(false); door.setName("door"); door.setMeta(true);
 		
 		registerTile(stone);
 		registerTile(grass);
 		registerTile(bad);
+		registerTile(door);
 	}
 	
 	public boolean registerTile(Tile tile) {
