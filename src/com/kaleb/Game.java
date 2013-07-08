@@ -15,6 +15,9 @@ public class Game implements Runnable {
 
 	private GameCanvas canvas;
 	private GameTime gameTime;
+	
+	private int screenWidth = 1920;
+	private int screenHeight = 1080;
 	private int gameWidth = 800;
 	private int gameHeight = 600;
 	
@@ -22,9 +25,14 @@ public class Game implements Runnable {
 	private Screen lastScreen;
 	private InputManager manager;
 	
-	public void init() {
+	public void init(int sw, int sh, int gw, int gh) {
+		gameWidth = gw;
+		gameHeight = gh;
+		screenWidth = sw;
+		screenHeight = sh;
+		
 		manager = new InputManager(new Keys(), new Mouse());
-		canvas = new GameCanvas(this, gameWidth, gameHeight, manager);
+		canvas = new GameCanvas(this, manager);
 		gameTime = new GameTime();
 		
 		currentScreen = new TestScreen();
@@ -74,4 +82,9 @@ public class Game implements Runnable {
 	}
 	
 	public GameCanvas getCanvas() { return canvas; }
+	
+	public int getScreenWidth() { return screenWidth; }
+	public int getScreenHeight() { return screenHeight; }
+	public int getGameWidth() { return gameWidth; }
+	public int getGameHeight() { return gameHeight; }
 }

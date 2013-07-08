@@ -16,9 +16,21 @@ public class GameCanvas extends Canvas {
 	private Graphics g;
 	private BufferStrategy bs;
 	
-	public GameCanvas(Game parent, int width, int height, InputManager mang) {
-		setSize(width, height);
+	private int screenWidth;
+	private int screenHeight;
+	private int width;
+	private int height;
+	
+	public GameCanvas(Game parent, InputManager mang) {
+		super();
 		parentRef = parent;
+		
+		screenWidth = parentRef.getScreenWidth();
+		screenHeight = parentRef.getScreenHeight();
+		width = parentRef.getGameWidth();
+		height = parentRef.getGameHeight();
+		
+		setSize(width, height);
 		
 		addKeyListener(mang);
 		addMouseListener(mang);
@@ -31,13 +43,14 @@ public class GameCanvas extends Canvas {
 			if (bs == null) {
 				createBufferStrategy(3);
 				requestFocus();
+				
 				return;
 			}
 			
 			g = bs.getDrawGraphics();
 			g.setColor(backgroundColor);
 			g.fillRect(0, 0, getWidth(), getHeight());
-			
+			g.setColor(backgroundColor);
 			parentRef.render(g);
 			
 			g.dispose();
@@ -47,4 +60,9 @@ public class GameCanvas extends Canvas {
 	
 	public Color getBackgroundColor() { return backgroundColor; }
 	public void setBackgroundColor(Color bg) { backgroundColor = bg; }
+	
+	public int getWidth() { return width; }
+	public int getHeight() { return height; }
+	public int getScreenWidth() { return screenWidth; }
+	public int getScreenHeight() { return screenHeight; }
 }

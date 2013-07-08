@@ -14,6 +14,9 @@ public class Tile {
 	private boolean hasMeta = false;
 	private Rectangle bounds = new Rectangle(0, 0, 32, 32);
 	
+	private int xOffs = 0;
+	private int yOffs = 0;
+	
 	public Tile(int imid, int i) {
 		Bitmap temp = BitmapLoader.getInstance().getBitmap(imid);
 		imageID = imid;
@@ -38,6 +41,12 @@ public class Tile {
 	public int getID() { return id; }
 	public Bitmap getImage() { return BitmapLoader.getInstance().getBitmap(imageID); }
 	public Bitmap getImageFromMeta(byte meta) { return BitmapLoader.getInstance().getBitmap(imageID); }
+	
+	public int getYOffs() { return yOffs; }
+	public int getXOffs() { return xOffs; }
+
+	public void setXOffs(int val) { xOffs = val; }
+	public void setYOffs(int val) { yOffs = val; }
 	
 	public String toString() { 
 		return "Name: " + internalName +", ID: " + id;

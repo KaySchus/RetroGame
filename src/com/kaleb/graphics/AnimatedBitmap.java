@@ -23,7 +23,6 @@ public class AnimatedBitmap {
 	
 	private boolean repeat;
 	
-	
 	public AnimatedBitmap(int im, int f, int x, int y, int w, int h, int num) {
 		bitmapReference = im;
 		fps = f;
@@ -43,7 +42,7 @@ public class AnimatedBitmap {
 		if (time >= secondsPerFrame) {
 			time = 0;
 			position++;
-			if (position > frames) position = 0;
+			if (position > frames - 1) position = 0;
 		}
 	}
 	

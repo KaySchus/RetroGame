@@ -49,7 +49,7 @@ public class MobEntity extends Entity {
 					Tile t = getWorld().getTiles().getTileMap().get(tiles[x + 1][y + 1]);
 					if (t != null) {
 						Rectangle tBounds = t.getBounds();
-						tBounds.update((getTileX() + x) * 32, (getTileY() + y) * 32);
+						tBounds.update(((getTileX() + x) * getWorld().getTileSize()) + t.getXOffs(), ((getTileY() + y) * getWorld().getTileSize()) + t.getYOffs());
 						byte m = getWorld().getLevel().getMeta()[getTileX() + x][getTileY() + y];
 							
 						if (getBounds().intersects(tBounds) && t.isSolidWithMeta(m)) {
@@ -75,7 +75,7 @@ public class MobEntity extends Entity {
 							}
 								
 							else if (yVel < 0) {
-								setY(tBounds.getY() + tBounds.getHeight());
+								setY(tBounds.getY() + tBounds.getHeight() - getYOffs());
 								while (getBounds().intersects(tBounds)) {
 									incY(1);
 								}

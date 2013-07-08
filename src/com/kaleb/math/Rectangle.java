@@ -73,10 +73,10 @@ public class Rectangle {
 	}
 	
 	public boolean intersects(Rectangle rect) {
-		if ((xPos > rect.getX() && xPos < rect.getX() + rect.getWidth()) || 
-				(xPos + width > rect.getX() && xPos + width < rect.getX() + rect.getWidth())) {
-			if ((yPos > rect.getY() && yPos < rect.getY() + rect.getHeight()) ||
-					(yPos + height > rect.getY() && yPos + height < rect.getY() + rect.getHeight())) {
+		if ((xPos >= rect.getX() && xPos <= rect.getX() + rect.getWidth()) || 
+				(xPos + width >= rect.getX() && xPos + width <= rect.getX() + rect.getWidth())) {
+			if ((yPos >= rect.getY() && yPos <= rect.getY() + rect.getHeight()) ||
+					(yPos + height >= rect.getY() && yPos + height <= rect.getY() + rect.getHeight())) {
 				return true;
 			}
 		}
@@ -91,6 +91,13 @@ public class Rectangle {
 			}
 		}
 		
+		return false;
+	}
+	
+	public boolean contains(int x, int y) {
+		if (x > getX() && x < getX() + getWidth() && y > getY() && y < getY() + getHeight()) {
+			return true;
+		}
 		return false;
 	}
 	

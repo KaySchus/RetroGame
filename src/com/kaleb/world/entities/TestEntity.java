@@ -29,14 +29,12 @@ public class TestEntity extends MobEntity {
 				double vel = (0.5 - rand.nextDouble()) * 256;
 				setXVel(vel);
 				setYVel(0);
-				System.out.println("X: " + vel);
 			}
 			
 			else {
 				double vel = (0.5 - rand.nextDouble()) * 256;
 				setYVel(vel);
 				setXVel(0);
-				System.out.println("Y: " + vel);
 			}
 			
 			timeElapsed = 0;

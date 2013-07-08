@@ -8,8 +8,11 @@ import java.util.List;
 import com.kaleb.GameTime;
 import com.kaleb.content.BitmapLoader;
 import com.kaleb.content.Bitmaps;
+import com.kaleb.graphics.AnimatedBitmap;
 import com.kaleb.graphics.Camera;
 import com.kaleb.graphics.fonts.BitmapFont;
+import com.kaleb.gui.ControlManager;
+import com.kaleb.gui.controls.DraggableControl;
 import com.kaleb.input.InputManager;
 import com.kaleb.world.entities.Entity;
 import com.kaleb.world.entities.PlayerEntity;
@@ -33,6 +36,9 @@ public class World {
 	private List<Entity> entities = new ArrayList<Entity>();
 	
 	private boolean debug = false;
+	private AnimatedBitmap ab;
+	
+	private ControlManager test;
 	
 	public World() {
 		camera = new Camera(this, 800, 600);
@@ -41,28 +47,37 @@ public class World {
 		
 		font = new BitmapFont(Bitmaps.testFont, 16, 16);
 		
-		player = new PlayerEntity(this, Bitmaps.glasses, 170, 170, 6, 0, 22, 32);
+		ab = new AnimatedBitmap(Bitmaps.anim, 24, 0, 0, 32, 32, 4);
+		
+		player = new PlayerEntity(this, Bitmaps.glasses, 170, 170, 9, 4, 18, 24);
 		
 		entities.add(player);
 		entities.add(new TestEntity(this, Bitmaps.orange, 300, 300, 16, 16));
+		
+		test = new ControlManager(font);
+		test.registerControl(new DraggableControl(Bitmaps.inventory, 100, 100));
+		test.setVisible(false);
 	}
 	
 	public void update(GameTime gameTime, InputManager manager) {
+		test.update(gameTime,  manager);
 		for (Entity e : entities) {
 			e.update(gameTime, manager);
 		}
+		
+		ab.update(gameTime);
 		
 		camera.center(player.getX(), player.getY());
 		camera.update();
 		
 		if (manager.getKeys().enter.keyPressed()) debug = !debug;
-		
-		
+		if (manager.getKeys().shift.keyPressed()) test.setVisible(!test.isVisible());
 		
 		if (manager.getMouse().left.keyPressed()) {
 			tileX = (manager.getMouse().getX() + camera.getX()) / level.getBlockSize();
 			tileY = (manager.getMouse().getY() + camera.getY()) / level.getBlockSize();
 			System.out.println("Tile: " + getTiles().getTileMap().get(level.getMap()[tileX][tileY]));
+			System.out.println("Rect: " + getTiles().getTileMap().get(level.getMap()[tileX][tileY]).getBounds());
 		}
 		
 		else if (manager.getMouse().right.keyPressed()) {
@@ -96,6 +111,10 @@ public class World {
 		
 			BitmapLoader.getInstance().getBitmap(Bitmaps.yellowborder).render(g, (player.getBounds().getX()) - camera.getX(), (player.getBounds().getY()) - camera.getY());
 		}
+		
+		ab.render(g, 0, 0);
+		
+		test.render(g);
 	
 		font.renderColoredString(g, fps, 0, 0, Color.BLUE);
 		font.renderColoredString(g, "X: " + player.getX(), 0, 16, Color.BLUE);

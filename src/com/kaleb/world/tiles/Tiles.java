@@ -3,6 +3,7 @@ package com.kaleb.world.tiles;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.kaleb.GameTime;
 import com.kaleb.content.Bitmaps;
 
 public class Tiles {
@@ -24,6 +25,9 @@ public class Tiles {
 		registerTile(grass);
 		registerTile(bad);
 		registerTile(door);
+	}
+	
+	public void update(GameTime gt) {
 	}
 	
 	public boolean registerTile(Tile tile) {

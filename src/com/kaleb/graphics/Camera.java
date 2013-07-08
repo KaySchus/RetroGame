@@ -32,7 +32,7 @@ public class Camera {
 		yPos = 0;
 	}
 	
-	public void update() {
+	public void update() {	
 		tilePosX = xPos / world.getTileSize();
 		tilePosY = yPos / world.getTileSize();
 		

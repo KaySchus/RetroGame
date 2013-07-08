@@ -9,7 +9,7 @@ import com.kaleb.world.tiles.Tile;
 import com.kaleb.world.tiles.interfaces.IUsable;
 
 public class PlayerEntity extends MobEntity {
-	private int speed = 64;
+	private int speed = 256;
 	
 	public PlayerEntity(World w, int i, int x, int y, int ww, int hh) {
 		super(w, i, x, y, ww, hh);

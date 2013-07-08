@@ -17,6 +17,7 @@ public class TileDoor extends Tile implements IUsable {
 		im2 = im;
 		
 		setBounds(new Rectangle(0, 11, 32, 10));
+		setYOffs(11);
 	}
 	
 	@Override
