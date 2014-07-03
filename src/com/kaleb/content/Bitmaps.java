@@ -11,6 +11,7 @@ public class Bitmaps {
 	public static final int blueOver = bl.loadBitmap(32, 32, new Color(0, 0, 255, 100));
 	
 	public static final int startbutton = bl.loadBitmap("res/gui/startbutton.png");
+	public static final int startbackground = bl.loadBitmap("res/gui/startbackground.png");
 	
 	public static final int stone = bl.loadBitmap("res/tiles/stonebrick.png");
 	public static final int grass = bl.loadBitmap("res/tiles/grass.png");

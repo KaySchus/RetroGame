@@ -7,6 +7,7 @@ import com.kaleb.GameTime;
 import com.kaleb.content.Bitmaps;
 import com.kaleb.graphics.fonts.BitmapFont;
 import com.kaleb.gui.ControlManager;
+import com.kaleb.gui.controls.BitmapControl;
 import com.kaleb.gui.controls.ButtonControl;
 import com.kaleb.input.InputManager;
 
@@ -17,10 +18,12 @@ public class TestScreen implements Screen {
 	
 	private ControlManager man = new ControlManager(font);
 	private ButtonControl button = new ButtonControl(Bitmaps.startbutton, 500, 400);
+	private BitmapControl background = new BitmapControl(Bitmaps.startbackground, 0, 0);
 	
 	public TestScreen() {
 		font.setColor(Color.CYAN);
 		
+		man.registerControl(background);
 		man.registerControl(button);
 		button.setVisible(true);
 	}

@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 public class Main {
 	public static void main(String[] args) {
 		Game g = new Game();
-		g.init(1920, 1080, 800, 600);
+		g.init(800, 600, 800, 600);
 		
 		JFrame frame = new JFrame("Retro Game");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

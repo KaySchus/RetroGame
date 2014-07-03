@@ -16,10 +16,10 @@ public class Game implements Runnable {
 	private GameCanvas canvas;
 	private GameTime gameTime;
 	
-	private int screenWidth = 1920;
-	private int screenHeight = 1080;
-	private int gameWidth = 800;
-	private int gameHeight = 600;
+	private int screenWidth = 800;
+	private int screenHeight = 600;
+	private int gameWidth = 400;
+	private int gameHeight = 300;
 	
 	private Screen currentScreen;
 	private Screen lastScreen;

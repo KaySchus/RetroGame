@@ -17,6 +17,7 @@ import com.kaleb.input.InputManager;
 import com.kaleb.world.entities.Entity;
 import com.kaleb.world.entities.PlayerEntity;
 import com.kaleb.world.entities.TestEntity;
+import com.kaleb.world.entities.spawner.TestSpawner;
 import com.kaleb.world.levels.Level;
 import com.kaleb.world.tiles.Tiles;
 
@@ -34,6 +35,7 @@ public class World {
 	
 	private PlayerEntity player;
 	private List<Entity> entities = new ArrayList<Entity>();
+	private List<Entity> entitiesToAdd = new ArrayList<Entity>();
 	
 	private boolean debug = false;
 	private AnimatedBitmap ab;
@@ -53,6 +55,7 @@ public class World {
 		
 		entities.add(player);
 		entities.add(new TestEntity(this, Bitmaps.orange, 300, 300, 16, 16));
+		entities.add(new TestSpawner(this, Bitmaps.orange, 300, 300, 16, 16));
 		
 		test = new ControlManager(font);
 		test.registerControl(new DraggableControl(Bitmaps.inventory, 100, 100));
@@ -66,7 +69,7 @@ public class World {
 		}
 		
 		ab.update(gameTime);
-		
+																
 		camera.center(player.getX(), player.getY());
 		camera.update();
 		
@@ -86,6 +89,12 @@ public class World {
 			level.setTile(tiles.stone.getID(), tileX, tileY);
 			System.out.println("Tile: " + getTiles().getTileMap().get(level.getMap()[tileX][tileY]));
 		}
+		
+		for (Entity e : entitiesToAdd) {
+			entities.add(e);
+		}
+		
+		entitiesToAdd.clear();
 		
 		fps = "FPS: " + gameTime.getFPS();
 	}
@@ -151,4 +160,5 @@ public class World {
 	public int getXSize() { return level.getTilesWide(); }
 	public int getYSize() { return level.getTilesHigh(); }
 	public List<Entity> getEntities() { return entities; }
+	public List<Entity> getEntitiesToAdd() { return entitiesToAdd; }
 }

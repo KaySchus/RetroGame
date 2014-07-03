@@ -16,9 +16,9 @@ public class TestEntity extends MobEntity {
 		
 		if (rand.nextBoolean()) {
 			setXVel((0.5 - rand.nextDouble()) * 256);
+		} else {
+			setYVel((0.5 - rand.nextDouble()) * 256);
 		}
-		
-		else setYVel((0.5 - rand.nextDouble()) * 256);
 	}
 	
 	public void update(GameTime gt, InputManager mag) {

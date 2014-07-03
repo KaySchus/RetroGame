@@ -100,6 +100,10 @@ public class Entity {
 	public int getTileX() { return tileX; }
 	public int getTileY() { return tileY; }
 	
+	public boolean shouldRender() { return shouldRender; }
+	public void setShouldRender(boolean val) { shouldRender = val; }
+	
 	public Rectangle getBounds() { return bounds; }
 	public Bitmap getBitmap() { return BitmapLoader.getInstance().getBitmap(imageID); }
+	public int getBitmapID() { return imageID; }
 }

@@ -23,13 +23,9 @@ public class DraggableControl extends BitmapControl {
 		Mouse m = manager.getMouse();
 		
 		if (bounds.contains(m.getX(), m.getY())) {
-			int xStart = 0;
-			int yStart = 0;
-			
 			if (m.left.keyPressed()) {
-				xStart = m.getX();
-				yStart = m.getY();
 			}
+			
 			if (m.left.isDown()) {
 				setX(getX() + m.getDeltaX());
 				setY(getY() + m.getDeltaY());
